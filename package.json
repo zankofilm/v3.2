@@ -1,0 +1,49 @@
+{
+  "name": "javanrood-admin-native",
+  "version":"3.2.3",
+  "description": "Admin Native No Port - V110 Official Administrative Letters with Governor Signature and Issue Number",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --publish never",
+    "portable": "electron-builder --win portable --publish never"
+  },
+  "devDependencies": {
+    "electron": "^3.2.3",
+    "electron-builder": "^3.2.3"
+  },
+  "build": {
+    "appId": "ir.javanrood.ngo.admin",
+    "productName": "JavanroodAdmin_Native_V110",
+    "directories": {
+      "output": "installer_output"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "admin_ui/**/*",
+      "data/**/*",
+      "package.json",
+      "build/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "JavanroodAdmin_Native_V110.${ext}",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "پنل ادمین سامانه سمن‌های شهرستان جوانرود",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": null
+  },
+  "author": "Farmandari Javanrood"
+}

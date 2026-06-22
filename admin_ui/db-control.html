@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3.2.3 DB RESTORE</title>
+</head>
+<body>
+
+<h2>Database Control Panel</h2>
+
+<button onclick="backup()">Backup</button>
+<button onclick="restore()">Restore Latest</button>
+
+<br/><br/>
+
+<input id="pass" type="password" placeholder="admin password"/>
+<button onclick="reset()">RESET DB</button>
+
+<pre id="out"></pre>
+
+<script>
+function backup(){
+  document.getElementById("out").innerText = "Backup created";
+}
+
+function restore(){
+  document.getElementById("out").innerText = "Restoring latest backup...";
+}
+
+function reset(){
+  const p = document.getElementById("pass").value;
+  if(!confirm("ARE YOU SURE?")) return;
+  document.getElementById("out").innerText = "Reset requested";
+}
+</script>
+
+</body>
+</html>

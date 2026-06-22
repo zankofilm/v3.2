@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3.2.3 GOV SYSTEM</title>
+</head>
+<body>
+
+<h2>GOVERNMENT DASHBOARD</h2>
+<div style="color:red;font-weight:bold">CLASSIFIED SYSTEM</div>
+
+<div id="report"></div>
+
+<script>
+const report = {
+  classification:"GOV",
+  status:"ACTIVE"
+}
+
+document.getElementById("report").innerHTML =
+  JSON.stringify(report,null,2);
+</script>
+
+</body>
+</html>
