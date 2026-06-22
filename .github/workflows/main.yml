@@ -1,18 +1,17 @@
-name: Build Native Admin No Port
+name: Build Electron App (FINAL FIX)
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
+    tags:
+      - "v*"
+  workflow_dispatch:
 
 jobs:
-  build-native-admin:
+  build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -21,16 +20,17 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install dependencies (SAFE MODE)
         run: npm install
 
       - name: Build Electron app
-        env:
-          ELECTRON_BUILDER_CACHE: ${{ github.workspace }}\.cache\electron-builder
         run: npm run dist
 
-      - name: Upload build output
+      - name: Upload setup
         uses: actions/upload-artifact@v4
         with:
-          name: NativeAdminBuild
-          path: dist/
+          name: setup
+          path: |
+            dist/**
+            release/**
+            out/**
