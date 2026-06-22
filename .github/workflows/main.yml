@@ -1,44 +1,37 @@
-name: Electron Build (PRO FIX)
+name: Build Electron Setup (FINAL FIX)
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 👇 مهم: GitHub الان Node 24 دارد، ما override نمی‌کنیم
-      - name: Setup Node (compatible mode)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
 
-      # 👇 مهم‌ترین fix تو کل مشکل
-      - name: Install dependencies SAFE
-        run: npm install --no-package-lock
+      - name: Install dependencies (FIXED)
+        run: npm install
 
-      # 👇 جلوگیری از crash builder
-      - name: Verify electron builder
+      - name: Verify Electron Builder
         run: npx electron-builder --version
 
-      # 👇 build واقعی
-      - name: Build Windows installer
+      - name: Build installer
         run: npm run dist
 
-      # 👇 پیدا کردن خروجی واقعی (نه فرضی)
-      - name: Upload ALL build outputs
+      - name: Upload setup files
         uses: actions/upload-artifact@v4
         with:
           name: setup-exe
           path: |
             dist/**
-            release/**
-            out/**
-            build/**
