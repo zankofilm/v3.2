@@ -1,31 +1,31 @@
-name: Build Electron
+name: Build Electron Setup
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install --include=dev
-
-      - name: Install electron-builder globally
-        run: npm install -g electron-builder
+        run: npm install
 
       - name: Build app
         run: npm run dist
 
-      - name: Upload
+      - name: Upload setup
         uses: actions/upload-artifact@v4
         with:
           name: setup
