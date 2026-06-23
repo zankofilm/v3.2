@@ -10,7 +10,7 @@
     "portable": "electron-builder --win portable --publish never"
   },
   "devDependencies": {
-    "electron": "^3.2.3",
+    "electron": "^28.0.0",
     "electron-builder": "^3.2.3"
   },
   "build": {
